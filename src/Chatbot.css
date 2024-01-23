@@ -1,0 +1,9 @@
+.main-window {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border: 1px solid gray;
+    padding: 10px;
+    background-color: lightgray;
+    box-shadow: 2px 2px 5px gray;
+}

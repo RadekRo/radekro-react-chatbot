@@ -1,6 +1,8 @@
+import './Chatbot.css';
+
 const ChatBot = () => {
     return (
-        <div>Chatbot</div>
+        <div className="main-window">Chatbot</div>
     )
 };
 export default ChatBot;
