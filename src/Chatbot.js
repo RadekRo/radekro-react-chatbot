@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import chatBotIcon from './assets/chatbot-icon.png';
-import sendMessage from './assets/chatbot-send.png';
+import sendMessageIcon from './assets/chatbot-send.png';
 
 import OpenButton from './components/OpenButton';
 import CloseButton from './components/CloseButton';
@@ -15,15 +15,76 @@ import Bubble from './components/Bubble';
 import Footer from './components/Footer';
 import Input from './components/Input';
 
+import TypingIndicator from './components/TypingIndicator';
+
 import './Chatbot.css';
 
 const ChatBot = () => {
-    const [isChatbotVisible, setChatbotVisible] = useState(true);
+    const [isChatbotVisible, setChatbotVisible] = useState(false);
     const [messages, setMessages] = useState([]); 
+    const [inputValue, setInputValue] = useState('');
+    const [botResponse, setBotResponse] = useState(false);
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
+
+    useEffect(() => {
+        setMessages([{role: 'bot', text: <TypingIndicator>...</TypingIndicator>}]);
+        setTimeout(() => {
+            setMessages(prevMessages => {
+                const newMessages = prevMessages.slice(0, -1);
+                const botResponse = {role: 'bot', text: 'Witaj! Jestem botem, w czym mogę Ci pomóc?'};
+                newMessages.push(botResponse);
+                return newMessages;
+            });
+        }, 2500); 
+    }, []);
 
     const handleClick = () => {
         setChatbotVisible(!isChatbotVisible);
     };
+
+    const sendMessage = () => {
+        setMessages(prevMessages => [...prevMessages, {role: 'user', text: <TypingIndicator>...</TypingIndicator>}]);
+        setTimeout(() => {
+            setMessages(prevMessages => {
+                const newMessages = prevMessages.slice(0, -1);
+                const userResponse = {role: 'user', text: inputValue};
+                newMessages.push(userResponse);
+                setBotResponse(true);
+                return newMessages;
+            });
+        }, 1500);
+        setInputValue('')
+    }
+
+    useEffect(() => {   
+        if (botResponse) {
+            setMessages(prevMessages => [...prevMessages, {role: 'bot', text: <TypingIndicator>...</TypingIndicator>}]);
+            setTimeout(() => {
+                setMessages(prevMessages => {
+                    const newMessages = prevMessages.slice(0, -1);
+                    const userResponse = {role: 'bot', text: potentialAnswers[Math.floor(Math.random() * potentialAnswers.length)]};
+                    newMessages.push(userResponse);
+                    setBotResponse(false);
+                    return newMessages;
+                });
+            }, 2500);
+        }
+    }, [botResponse]);
+
+    const handleInputValue = (event) => { 
+        setInputValue(event.target.value);
+    }
+
+    const potentialAnswers = ['Ty chuju złamany!', 'Spierdalaj!', 'Idź wal konia!', 
+    'Popierdoliło Cię?', 'Zajrzyj do muszli', 'Ty kurwo Ty!', 'Ty chuju Ty!', 
+    'Trzeba Cię ostatecznie rozpierdolić, bo się kurwo odradzasz!', 'Do mnie fikasz kutasie?',
+    'Nie no zajebię Cię kurwa', 'Masz coś kurwa do mnie?', 'Liż mi jaja suko!', 'Weź Ty się pierdolnij w łeb', 'A Ty co? Duda kurwa?',
+    'Nie no kurwa takiego chuja to ja jeszcze nie widziałem', 'Patrzyłeś w lustro ostatnio?', 'Żona na mieście chuju?', 'Lubisz widzę schylać się po mydło',
+    ];
 
     return (
         <>
@@ -37,14 +98,17 @@ const ChatBot = () => {
                     </Header>
                     <Container>
                         {messages.map((message, index) => (
-                            <ChatRow key={index} user={message.user}>
-                                <Bubble user={message.user}>{message.text}</Bubble>
+                            <ChatRow key={index} role={message.role}>
+                                <Bubble role={message.role}>{message.text}</Bubble>
                             </ChatRow>
                         ))}
+                        <div ref={messagesEndRef} />
                     </Container>
                     <Footer>
-                        <Input placeholder='Wpisz wiadomość' />
-                        <SendButton><img src={sendMessage} alt='chatbot icon' /></SendButton>
+                        <Input placeholder='Wpisz wiadomość' onChange={handleInputValue} value={inputValue} />
+                        <SendButton onClick={sendMessage}>
+                            <img src={sendMessageIcon} alt='chatbot icon' />
+                        </SendButton>
                     </Footer>
                 </ChatWindow>
         </>
