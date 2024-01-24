@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import chatBotIcon from './assets/chatbot-icon.png';
+import sendMessage from './assets/chatbot-send.png';
 
 import OpenButton from './components/OpenButton';
 import CloseButton from './components/CloseButton';
+import SendButton from './components/SendButton';
 
 import ChatWindow from './components/ChatWindow';  
 import ChatRow from './components/ChatRow';
@@ -11,11 +13,13 @@ import Header from './components/Header';
 import Container from './components/Container';
 import Bubble from './components/Bubble';
 import Footer from './components/Footer';
+import Input from './components/Input';
 
 import './Chatbot.css';
 
 const ChatBot = () => {
     const [isChatbotVisible, setChatbotVisible] = useState(true);
+    const [messages, setMessages] = useState([]); 
 
     const handleClick = () => {
         setChatbotVisible(!isChatbotVisible);
@@ -32,16 +36,15 @@ const ChatBot = () => {
                         <CloseButton onClick={handleClick}>X</CloseButton>
                     </Header>
                     <Container>
-                        <ChatRow user={false}>
-                            <Bubble user={false}>Witaj, jestem automatycznym pomocnikiem. Wybierz, w czym mogę Ci pomóc?</Bubble>
-                        </ChatRow>
-                        <ChatRow user={true}>
-                            <Bubble user={true}>A dziękuję Ci serdecznie, Czuwaj!</Bubble>
-                        </ChatRow>
+                        {messages.map((message, index) => (
+                            <ChatRow key={index} user={message.user}>
+                                <Bubble user={message.user}>{message.text}</Bubble>
+                            </ChatRow>
+                        ))}
                     </Container>
                     <Footer>
-                        <input type='text' placeholder='Wpisz wiadomość...' />
-                        <button>Wyślij</button>
+                        <Input placeholder='Wpisz wiadomość' />
+                        <SendButton><img src={sendMessage} alt='chatbot icon' /></SendButton>
                     </Footer>
                 </ChatWindow>
         </>

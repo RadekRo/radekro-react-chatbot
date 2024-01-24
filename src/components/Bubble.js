@@ -6,7 +6,7 @@ const Bubble = styled.div`
     background-color: ${props => props.user ? '#888' : '#333'};
     color: white;
     display: inline-block;
-    font-size: 1rem;
+    font-size: 0.95rem;
     border-radius: 10px;
     max-width: 55%;
 `;
