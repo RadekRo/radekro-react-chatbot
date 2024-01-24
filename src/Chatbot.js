@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ChatButton from './components/ChatButton';
 import './Chatbot.css';
 
 const ChatBot = () => {
@@ -11,7 +12,7 @@ const ChatBot = () => {
     return (
         <>
             {isChatbotVisible ? (
-                <div className="chat-bot" onClick={handleClick}>Chatbot</div>
+                <ChatButton onClick={handleClick} theme={{backgroundColor: 'yellow'}}/>
             ) : (
                 <div className="chat-bot main-window">
                     <div>
