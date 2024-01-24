@@ -22,6 +22,7 @@
 .bot-container, .user-container {
     margin-bottom: 5px;
     margin-top: 5px;
+    font-size: 0.5em;
 }
 
 .bot-container {

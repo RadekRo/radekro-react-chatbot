@@ -12,6 +12,8 @@ const ChatButton = styled.button`
     right: 1rem;
     bottom: 1rem;
     width: 3rem;
+    transform: scale(${props => props.open ? 0 : 1});
+    transition: transform 0.3s ease-in-out, transform 0.3s ease-in-out;
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
 `;
 

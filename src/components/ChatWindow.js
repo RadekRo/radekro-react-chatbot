@@ -5,15 +5,18 @@ const ChatWindow = styled.div`
     border: 1px solid gray;
     border-radius: 10px;
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
-    bottom: 1rem;
     color: ${({ theme }) => theme.color};
     cursor: pointer;
     font-size: 1.5rem;
-    height: 3rem;
+    height: 30rem;
+    width: 20rem;
     position: fixed;
     right: 1rem;
-    width: 3rem;
-    `;
+    bottom: 1rem;
+    transform: scale(${props => props.open ? 1 : 0});
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-in-out;
+`;
 
 ChatWindow.defaultProps = { 
     theme: { 

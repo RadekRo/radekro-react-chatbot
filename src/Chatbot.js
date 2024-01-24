@@ -12,7 +12,7 @@ const ChatBot = () => {
 
     return (
         <>
-            {isChatbotVisible ? (
+            {/* {isChatbotVisible ? (
                 <ChatButton onClick={handleClick} theme={{color: 'red', backgroundColor: 'black'}}>click</ChatButton>
             ) : (
                 <ChatWindow>
@@ -28,7 +28,21 @@ const ChatBot = () => {
                         <div className="user-message">I am a new client.</div>
                     </div>
                 </ChatWindow>
-            )}
+            )} */}
+                <ChatButton open={isChatbotVisible} onClick={handleClick} theme={{color: 'white', backgroundColor: 'blue'}}>ch</ChatButton>
+                <ChatWindow open={isChatbotVisible}>
+                    <div>
+                        <button onClick={handleClick}>X</button>
+                    </div>
+                    <div className='bot-container'>
+                        <div className='bot-message'>Bot:</div>
+                        <div className="bot-message">Hello! How can I help you?</div>
+                    </div>
+                    <div className='user-container'>
+                        <div className='user-message'>User:</div>
+                        <div className="user-message">I am a new client.</div>
+                    </div>
+                </ChatWindow>
         </>
     );
 };
