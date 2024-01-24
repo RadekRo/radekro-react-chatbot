@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ChatButton from './components/ChatButton';
+import ChatWindow from './components/ChatWindow';  
 import './Chatbot.css';
 
 const ChatBot = () => {
@@ -12,9 +13,9 @@ const ChatBot = () => {
     return (
         <>
             {isChatbotVisible ? (
-                <ChatButton onClick={handleClick} theme={{backgroundColor: 'yellow'}}/>
+                <ChatButton onClick={handleClick} theme={{color: 'red', backgroundColor: 'black'}}>click</ChatButton>
             ) : (
-                <div className="chat-bot main-window">
+                <ChatWindow>
                     <div>
                         <button onClick={handleClick}>X</button>
                     </div>
@@ -26,7 +27,7 @@ const ChatBot = () => {
                         <div className='user-message'>User:</div>
                         <div className="user-message">I am a new client.</div>
                     </div>
-                </div>
+                </ChatWindow>
             )}
         </>
     );
