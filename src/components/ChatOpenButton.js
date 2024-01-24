@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ChatButton = styled.button`
+const ChatOpenButton = styled.button`
     background-color: ${({ theme }) => theme.backgroundColor};
     border: 1px solid gray;
     border-radius: 50%;
@@ -17,11 +17,11 @@ const ChatButton = styled.button`
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
 `;
 
-ChatButton.defaultProps = {
+ChatOpenButton.defaultProps = {
     theme: {
         color: '#fff',
         backgroundColor: '#000'
     }
 };
 
-export default ChatButton;
+export default ChatOpenButton;

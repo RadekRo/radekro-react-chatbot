@@ -6,8 +6,7 @@ const ChatWindow = styled.div`
     border-radius: 10px;
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
     color: ${({ theme }) => theme.color};
-    cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1em;
     height: 30rem;
     width: 20rem;
     position: fixed;
