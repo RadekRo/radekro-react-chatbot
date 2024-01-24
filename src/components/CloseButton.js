@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const ChatCloseButton = styled.div`
+const CloseButton = styled.div`
     background-color: transparent;
     color: white;
     cursor: pointer;
 `;
 
-export default ChatCloseButton;
+export default CloseButton;

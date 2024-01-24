@@ -15,6 +15,8 @@ const ChatWindow = styled.div`
     transform: scale(${props => props.open ? 1 : 0});
     transform-origin: bottom right;
     transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 `;
 
 ChatWindow.defaultProps = { 

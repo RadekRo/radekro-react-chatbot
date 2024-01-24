@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import chatBotIcon from './assets/chatbot-icon.png';
 
-import ChatOpenButton from './components/ChatOpenButton';
-import ChatCloseButton from './components/ChatCloseButton';
+import OpenButton from './components/OpenButton';
+import CloseButton from './components/CloseButton';
 
 import ChatWindow from './components/ChatWindow';  
-import ChatHeader from './components/ChatHeader';
+import ChatRow from './components/ChatRow';
+
+import Header from './components/Header';
+import Container from './components/Container';
+import Bubble from './components/Bubble';
+import Footer from './components/Footer';
 
 import './Chatbot.css';
 
@@ -17,20 +23,26 @@ const ChatBot = () => {
 
     return (
         <>
-                <ChatOpenButton open={isChatbotVisible} onClick={handleClick} theme={{color: 'white', backgroundColor: 'blue'}}>ch</ChatOpenButton>
+                <OpenButton open={isChatbotVisible} onClick={handleClick} theme={{color: 'white', backgroundColor: '#555'}}>
+                    <img src={chatBotIcon} alt='chatbot icon' />
+                </OpenButton>
                 <ChatWindow open={isChatbotVisible}>
-                    <ChatHeader>
+                    <Header>
                         <div>ChatBot Service</div>
-                        <ChatCloseButton onClick={handleClick}>X</ChatCloseButton>
-                    </ChatHeader>
-                    <div className='bot-container'>
-                        <div className='bot-message'>Bot:</div>
-                        <div className="bot-message">Hello! How can I help you?</div>
-                    </div>
-                    <div className='user-container'>
-                        <div className='user-message'>User:</div>
-                        <div className="user-message">I am a new client.</div>
-                    </div>
+                        <CloseButton onClick={handleClick}>X</CloseButton>
+                    </Header>
+                    <Container>
+                        <ChatRow user={false}>
+                            <Bubble user={false}>Witaj, jestem automatycznym pomocnikiem. Wybierz, w czym mogę Ci pomóc?</Bubble>
+                        </ChatRow>
+                        <ChatRow user={true}>
+                            <Bubble user={true}>A dziękuję Ci serdecznie, Czuwaj!</Bubble>
+                        </ChatRow>
+                    </Container>
+                    <Footer>
+                        <input type='text' placeholder='Wpisz wiadomość...' />
+                        <button>Wyślij</button>
+                    </Footer>
                 </ChatWindow>
         </>
     );
