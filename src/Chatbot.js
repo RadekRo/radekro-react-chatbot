@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import chatBotIcon from './assets/chatbot-icon.png';
 import sendMessageIcon from './assets/chatbot-send.png';
 
@@ -18,6 +18,13 @@ import Input from './components/Input';
 import TypingIndicator from './components/TypingIndicator';
 
 import './Chatbot.css';
+
+const potentialAnswers = ['Ty chuju złamany!', 'Spierdalaj!', 'Idź wal konia!', 
+    'Popierdoliło Cię?', 'Zajrzyj do muszli', 'Ty kurwo Ty!', 'Ty chuju Ty!', 
+    'Trzeba Cię ostatecznie rozpierdolić, bo się kurwo odradzasz!', 'Do mnie fikasz kutasie?',
+    'Nie no zajebię Cię kurwa', 'Masz coś kurwa do mnie?', 'Liż mi jaja suko!', 'Weź Ty się pierdolnij w łeb', 'A Ty co? Duda kurwa?',
+    'Nie no kurwa takiego chuja to ja jeszcze nie widziałem', 'Patrzyłeś w lustro ostatnio?', 'Żona na mieście chuju?', 'Lubisz widzę schylać się po mydło',
+    ];
 
 const ChatBot = () => {
     const [isChatbotVisible, setChatbotVisible] = useState(false);
@@ -75,16 +82,16 @@ const ChatBot = () => {
         }
     }, [botResponse]);
 
-    const handleInputValue = (event) => { 
+    const handleInputValue = useCallback((event) => { 
         setInputValue(event.target.value);
-    }
+    }, []);
 
-    const potentialAnswers = ['Ty chuju złamany!', 'Spierdalaj!', 'Idź wal konia!', 
-    'Popierdoliło Cię?', 'Zajrzyj do muszli', 'Ty kurwo Ty!', 'Ty chuju Ty!', 
-    'Trzeba Cię ostatecznie rozpierdolić, bo się kurwo odradzasz!', 'Do mnie fikasz kutasie?',
-    'Nie no zajebię Cię kurwa', 'Masz coś kurwa do mnie?', 'Liż mi jaja suko!', 'Weź Ty się pierdolnij w łeb', 'A Ty co? Duda kurwa?',
-    'Nie no kurwa takiego chuja to ja jeszcze nie widziałem', 'Patrzyłeś w lustro ostatnio?', 'Żona na mieście chuju?', 'Lubisz widzę schylać się po mydło',
-    ];
+    const handleKeyDown = useCallback((event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // prevent form submission and page reload
+            sendMessage();
+        }
+    }, [sendMessage]);
 
     return (
         <>
@@ -105,7 +112,12 @@ const ChatBot = () => {
                         <div ref={messagesEndRef} />
                     </Container>
                     <Footer>
-                        <Input placeholder='Wpisz wiadomość' onChange={handleInputValue} value={inputValue} />
+                        <Input 
+                            placeholder='Wpisz wiadomość' 
+                            onChange={handleInputValue} 
+                            value={inputValue} 
+                            onKeyDown={handleKeyDown}
+                        />
                         <SendButton onClick={sendMessage}>
                             <img src={sendMessageIcon} alt='chatbot icon' />
                         </SendButton>
