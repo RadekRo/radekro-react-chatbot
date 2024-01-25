@@ -55,6 +55,7 @@ const ChatBot = () => {
     };
 
     const sendMessage = () => {
+        setInputValue('');
         setMessages(prevMessages => [...prevMessages, {role: ActionTypes.USER, text: <TypingIndicator>...</TypingIndicator>}]);
         setTimeout(() => {
             setMessages(prevMessages => {
@@ -65,7 +66,7 @@ const ChatBot = () => {
                 return newMessages;
             });
         }, 1500);
-        setInputValue('')
+        
     }
 
     useEffect(() => {   
