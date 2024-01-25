@@ -15,6 +15,7 @@ import Bubble from './components/Bubble';
 import Footer from './components/Footer';
 import Input from './components/Input';
 
+import ActionTypes from './actions/ActionTypes';
 import TypingIndicator from './components/TypingIndicator';
 
 import './Chatbot.css';
@@ -38,11 +39,11 @@ const ChatBot = () => {
     }, [messages]);
 
     useEffect(() => {
-        setMessages([{role: 'bot', text: <TypingIndicator>...</TypingIndicator>}]);
+        setMessages([{role: ActionTypes.BOT, text: <TypingIndicator>...</TypingIndicator>}]);
         setTimeout(() => {
             setMessages(prevMessages => {
                 const newMessages = prevMessages.slice(0, -1);
-                const botResponse = {role: 'bot', text: 'Witaj! Jestem botem, w czym mogę Ci pomóc?'};
+                const botResponse = {role: ActionTypes.BOT, text: 'Witaj! Jestem botem, w czym mogę Ci pomóc?'};
                 newMessages.push(botResponse);
                 return newMessages;
             });
@@ -54,11 +55,11 @@ const ChatBot = () => {
     };
 
     const sendMessage = () => {
-        setMessages(prevMessages => [...prevMessages, {role: 'user', text: <TypingIndicator>...</TypingIndicator>}]);
+        setMessages(prevMessages => [...prevMessages, {role: ActionTypes.USER, text: <TypingIndicator>...</TypingIndicator>}]);
         setTimeout(() => {
             setMessages(prevMessages => {
                 const newMessages = prevMessages.slice(0, -1);
-                const userResponse = {role: 'user', text: inputValue};
+                const userResponse = {role: ActionTypes.USER, text: inputValue};
                 newMessages.push(userResponse);
                 setBotResponse(true);
                 return newMessages;
@@ -69,11 +70,11 @@ const ChatBot = () => {
 
     useEffect(() => {   
         if (botResponse) {
-            setMessages(prevMessages => [...prevMessages, {role: 'bot', text: <TypingIndicator>...</TypingIndicator>}]);
+            setMessages(prevMessages => [...prevMessages, {role: ActionTypes.BOT, text: <TypingIndicator>...</TypingIndicator>}]);
             setTimeout(() => {
                 setMessages(prevMessages => {
                     const newMessages = prevMessages.slice(0, -1);
-                    const userResponse = {role: 'bot', text: potentialAnswers[Math.floor(Math.random() * potentialAnswers.length)]};
+                    const userResponse = {role: ActionTypes.BOT, text: potentialAnswers[Math.floor(Math.random() * potentialAnswers.length)]};
                     newMessages.push(userResponse);
                     setBotResponse(false);
                     return newMessages;
