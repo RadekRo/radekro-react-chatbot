@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import chatBotIcon from './assets/chatbot-icon.png';
 import sendMessageIcon from './assets/chatbot-send.png';
 
@@ -18,6 +18,8 @@ import Input from './components/Input';
 import ActionTypes from './actions/ActionTypes';
 import TypingIndicator from './components/TypingIndicator';
 
+import useChatbot from './hooks/useChatbot';
+
 import './Chatbot.css';
 
 const potentialAnswers = ['Ty chuju złamany!', 'Spierdalaj!', 'Idź wal konia!', 
@@ -28,11 +30,17 @@ const potentialAnswers = ['Ty chuju złamany!', 'Spierdalaj!', 'Idź wal konia!'
     ];
 
 const ChatBot = () => {
-    const [isChatbotVisible, setChatbotVisible] = useState(false);
-    const [messages, setMessages] = useState([]); 
-    const [inputValue, setInputValue] = useState('');
-    const [botResponse, setBotResponse] = useState(false);
-    const messagesEndRef = useRef(null);
+    const {
+        isChatbotVisible,
+        setChatbotVisible,
+        messages,
+        setMessages,
+        inputValue,
+        setInputValue,
+        botResponse,
+        setBotResponse,
+        messagesEndRef
+    } = useChatbot();
 
     useEffect(() => {
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
