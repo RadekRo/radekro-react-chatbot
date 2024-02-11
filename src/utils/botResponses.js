@@ -12,7 +12,9 @@ const botResponses = (userMessage) => {
         botResponse = 'Aby sprawdzić status swojego zamówienia, proszę podać numer zamówienia.';
     } else if (userMessage.toLowerCase().includes('płatność') || userMessage.toLowerCase().includes('opłat')) {
         botResponse = 'Za zamówienie możesz zapłacić przelewem, przelewem na telefon lub przy odbiorze.';
-    }
+    } else if (userMessage.toLowerCase().includes('ofer'))  {
+        botResponse = 'Nasza oferta jest dość szeroka, proszę sprecyzuj czego szukasz, a postaram się pomóc.';
+}
 
     return botResponse;
 };
