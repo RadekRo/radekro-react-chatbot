@@ -3,20 +3,20 @@
 The ChatBot component is a customizable chat interface designed for React applications. It provides an interactive chat experience between the user and a chatbot. The component utilizes several child components and a custom hook to manage the chatbot's state and behavior.
 
 ### Features
-__Toggle Visibility:__ Users can open and close the chat window using the open button.
-__Real-time Messaging:__ Supports sending and receiving messages in real time.
-__Scroll to Latest Message:__ Automatically scrolls to the latest message in the chat window.
-__Customizable Theme:__ Allows customization of the chat window appearance and buttons.
+* __Toggle Visibility:__ Users can open and close the chat window using the open button.
+* __Real-time Messaging:__ Supports sending and receiving messages in real time.
+* __Scroll to Latest Message:__ Automatically scrolls to the latest message in the chat window.
+* __Customizable Theme:__ Allows customization of the chat window appearance and buttons.
 
 ### Structure
 The ChatBot component comprises the following child components and a custom hook:
 
-__OpenButton and CloseButton:__ Controls for toggling the visibility of the chat window.
-__SendButton:__ Button for sending messages.
-__ChatWindow:__ The main window where messages are displayed.
-__ChatRow:__ A row within the chat window, representing a single message.
-__Header, Container, Bubble, Footer, Input:__ UI components that structure the chat window and its contents.
-__useChatbot:__ A custom hook that manages the state and logic of the chatbot, including message handling and visibility.
+* __OpenButton and CloseButton:__ Controls for toggling the visibility of the chat window.
+* __SendButton:__ Button for sending messages.
+* __ChatWindow:__ The main window where messages are displayed.
+* __ChatRow:__ A row within the chat window, representing a single message.
+* __Header, Container, Bubble, Footer, Input:__ UI components that structure the chat window and its contents.
+* __useChatbot:__ A custom hook that manages the state and logic of the chatbot, including message handling and visibility.
 
 ### Setup and Usage
 #### Prerequisites
@@ -46,10 +46,10 @@ The theme prop of the OpenButton component can be customized to change its color
 The main ChatBot component does not require any props for its basic operation. However, child components such as OpenButton, SendButton, and Bubble can be customized through props for different themes or behaviors.
 
 ### Functionality
-__Opening/Closing the Chat Window:__ The chat window can be toggled by clicking the open button displayed on the screen. The CloseButton inside the chat window serves the same purpose.
-__Sending Messages:__ Users can type messages in the input field and send them by pressing the send button or hitting the enter key. Messages are then displayed in the chat window.
-__Receiving Messages:__ The useChatbot hook simulates receiving messages from a chatbot. Implement your bot's logic within this hook for dynamic interactions.
-__Custom Hook:__ useChatbot
+* __Opening/Closing the Chat Window:__ The chat window can be toggled by clicking the open button displayed on the screen. The CloseButton inside the chat window serves the same purpose.
+* __Sending Messages:__ Users can type messages in the input field and send them by pressing the send button or hitting the enter key. Messages are then displayed in the chat window.
+* __Receiving Messages:__ The useChatbot hook simulates receiving messages from a chatbot. Implement your bot's logic within this hook for dynamic interactions.
+* __Custom Hook:__ useChatbot
 The useChatbot hook manages the chatbot's state, including message history, input value, and visibility of the chat window. It provides functions for sending messages, which can be extended to integrate with real chatbot services.
 
 ### Conclusion
